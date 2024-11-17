@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Principal y Compras</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1>Bienvenido, {{ usuario.username }}</h1>
+        </header>
+
+        <section class="content">
+            <p style="align-items: center;">Profe por favor ponganos el 100</p>
+
+            <h2>Listado de Compras</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID Compra</th>
+                        <th>Fecha de Creación</th>
+                        <th>Dirección de Envío</th>
+                        <th>Productos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in datos %}
+                        <tr>
+                            <td>{{ compra.id }}</td>
+                            <td>{{ compra.fecha_creada }}</td>
+                            <td>{{ compra.direccion_envio }}</td>
+                            <td>
+                                <ul>
+                                    {% for producto in compra.productos %}
+                                        <li>{{ producto.nombre }} - Cantidad: {{ producto.cantidad }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
+
