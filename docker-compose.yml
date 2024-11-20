@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  # Servicio de Django
+  rutas_web:
+    build:
+      context: .
+    container_name: rutas_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8086:8000"
+    environment:
+      - DB_NAME=ecommerce
+      - DB_USER=tallerUser
+      - DB_PASSWORD=Usm12345-
+      - DB_HOST=db
+      - DB_PORT=5432
+    networks:
+      - db_network 
+
+
+networks:
+  db_network:  
+      name: db_network
+      external: true
